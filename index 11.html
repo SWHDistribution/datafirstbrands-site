@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data First Brands — Take Control of Ecommerce</title>
+  <meta name="description" content="A marketplace agency built on systems, not vibes. Take control of ecommerce with Data First Brands." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-elev: #111a2c;
+      --line: #1c2740;
+      --ink: #f5f1e8;
+      --ink-dim: #a8b0c0;
+      --muted: #6b7488;
+      --accent: #1e7fd6;
+      --accent-bright: #2a8ee8;
+      --gray-dot: #8a95a5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(138, 149, 165, 0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* === NAV === */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 18, 32, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 18px 0;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-self: start;
+    }
+    .nav-right {
+      justify-self: end;
+    }
+    .logo-mark { width: 36px; height: 36px; }
+    .logo-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+    }
+    .logo-text .brands {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--ink-dim);
+      margin-top: 1px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      justify-self: center;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-dim);
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      padding: 10px 18px;
+      background: var(--accent);
+      color: var(--ink) !important;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      transition: background 0.2s ease;
+    }
+    .nav-cta:hover { background: var(--accent-bright); }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* === HERO === */
+    .hero {
+      padding: 130px 0 90px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 900;
+      font-size: clamp(44px, 7vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -0.025em;
+      max-width: 14ch;
+      margin: 0 auto 28px;
+    }
+    .hero h1 .accent {
+      color: var(--accent-bright);
+      position: relative;
+      display: inline-block;
+    }
+    .hero p {
+      font-size: clamp(17px, 1.4vw, 20px);
+      color: var(--ink-dim);
+      max-width: 56ch;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--accent);
+      color: var(--ink);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      border: 1px solid var(--accent);
+    }
+    .hero-cta:hover {
+      background: var(--accent-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 32px -8px rgba(30, 127, 214, 0.5);
+    }
+    .hero-cta svg {
+      transition: transform 0.2s ease;
+    }
+    .hero-cta:hover svg { transform: translateX(3px); }
+
+    /* Decorative dot accents in hero corners */
+    .hero-dots {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+    .hero-dots-left { top: 60px; left: 4%; }
+    .hero-dots-right { bottom: 40px; right: 4%; }
+
+    /* === STATS === */
+    .stats {
+      padding: 60px 0 80px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(17, 26, 44, 0.4);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .stat {
+      text-align: center;
+      padding: 12px 24px;
+      position: relative;
+    }
+    .stat + .stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      bottom: 20%;
+      width: 1px;
+      background: var(--line);
+    }
+    .stat-number {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 52px);
+      letter-spacing: -0.025em;
+      line-height: 1;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 1px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-number .currency {
+      color: var(--accent-bright);
+      font-size: 0.7em;
+      margin-right: 4px;
+    }
+    .stat-number .plus {
+      color: var(--accent-bright);
+    }
+    .stat-label {
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+
+    /* === PILLARS === */
+    .pillars {
+      padding: 130px 0 140px;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .pillar {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .pillar:hover {
+      border-color: rgba(30, 127, 214, 0.4);
+      transform: translateY(-4px);
+    }
+    .pillar:hover::before { opacity: 1; }
+    .pillar-num {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent-bright);
+      letter-spacing: 0.18em;
+      margin-bottom: 20px;
+    }
+    .pillar-dots {
+      margin-bottom: 24px;
+    }
+    .pillar h3 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      line-height: 1.15;
+    }
+    .pillar p {
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* === PROCESS (vertical timeline) === */
+    .process {
+      position: relative;
+      padding: 80px 0 100px;
+      border-top: 1px solid var(--line);
+    }
+    .process-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 60px;
+      padding: 0 32px;
+    }
+    .process-eyebrow {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 0;
+    }
+    /* Timeline container */
+    .timeline {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    /* Vertical center line — JS sets top/bottom to span between first and last markers */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--line);
+      transform: translateX(-50%);
+    }
+    /* The traveling dot */
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 6px rgba(30, 127, 214, 0.18),
+                  0 0 24px 0 rgba(30, 127, 214, 0.55);
+      transition: top 0.15s linear;
+      z-index: 2;
+      will-change: top;
+    }
+    .timeline-dot::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: var(--ink);
+      opacity: 0.85;
+    }
+
+    /* Each step row */
+    .timeline-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 0;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .timeline-step:last-child { margin-bottom: 0; }
+    .timeline-step.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Marker bubble on the line for each step */
+    .timeline-marker {
+      grid-column: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-marker-ring {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink-dim);
+      transition: all 0.4s ease;
+    }
+    .timeline-step.in-view .timeline-marker-ring {
+      border-color: var(--accent);
+      color: var(--ink);
+      background: var(--bg-elev);
+    }
+
+    /* Content cards on left or right */
+    .timeline-content {
+      padding: 0;
+    }
+    .timeline-step.left .timeline-content {
+      grid-column: 1;
+      padding-right: 56px;
+      text-align: right;
+    }
+    .timeline-step.right .timeline-content {
+      grid-column: 3;
+      padding-left: 56px;
+      text-align: left;
+    }
+    .timeline-step.left .timeline-icon { justify-content: flex-end; }
+    .timeline-step.right .timeline-icon { justify-content: flex-start; }
+
+    .timeline-icon {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .timeline-icon svg {
+      width: 110px;
+      height: 110px;
+    }
+    .timeline-content .step-num {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--accent-bright);
+      letter-spacing: 0.22em;
+      margin-bottom: 14px;
+    }
+    .timeline-content h3 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .timeline-content p {
+      font-size: 17px;
+      color: var(--ink-dim);
+      line-height: 1.55;
+      max-width: 38ch;
+    }
+    .timeline-step.left .timeline-content p { margin-left: auto; }
+
+    /* === FOOTER === */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 48px 0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-meta {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--ink-dim);
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--ink); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 860px) {
+      .nav-inner { grid-template-columns: auto auto; }
+      .nav-links { display: none; }
+      .nav-right { display: none; }
+      .mobile-toggle { display: block; justify-self: end; }
+      .hero { padding: 80px 0 60px; }
+
+      /* Timeline: stack everything left-aligned with line on the left edge */
+      .timeline-line { left: 22px; transform: none; }
+      .timeline-dot { left: 22px; }
+      .timeline-step {
+        grid-template-columns: 44px 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .timeline-marker { grid-column: 1; padding-top: 12px; }
+      .timeline-step.left .timeline-content,
+      .timeline-step.right .timeline-content {
+        grid-column: 2;
+        padding: 0;
+        text-align: left;
+      }
+      .timeline-step.left .timeline-content p,
+      .timeline-step.right .timeline-content p { margin-left: 0; }
+      .timeline-step.left .timeline-icon,
+      .timeline-step.right .timeline-icon { justify-content: flex-start; }
+      .timeline-icon svg { width: 100px; height: 100px; }
+      .process-header { margin-bottom: 60px; }
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .stat + .stat::before { display: none; }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .pillars { padding: 70px 0 90px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+
+    /* Fade-in on load */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .fade-up.d1 { animation-delay: 0.1s; }
+    .fade-up.d2 { animation-delay: 0.25s; }
+    .fade-up.d3 { animation-delay: 0.4s; }
+    .fade-up.d4 { animation-delay: 0.55s; }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="/" class="logo" aria-label="Data First Brands home">
+        <!-- 4x4 dot grid mark from the logo -->
+        <svg class="logo-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- row 1 -->
+          <circle cx="8"  cy="8"  r="4.5" fill="#8a95a5"/>
+          <circle cx="24" cy="8"  r="4.5" fill="#8a95a5"/>
+          <circle cx="40" cy="8"  r="4.5" fill="#8a95a5"/>
+          <circle cx="56" cy="8"  r="4.5" fill="#8a95a5"/>
+          <!-- row 2 -->
+          <circle cx="8"  cy="24" r="4.5" fill="#8a95a5"/>
+          <circle cx="24" cy="24" r="4.5" fill="#8a95a5"/>
+          <circle cx="40" cy="24" r="4.5" fill="#1e7fd6"/>
+          <circle cx="56" cy="24" r="4.5" fill="#1e7fd6"/>
+          <!-- row 3 -->
+          <circle cx="8"  cy="40" r="4.5" fill="#8a95a5"/>
+          <circle cx="24" cy="40" r="4.5" fill="#1e7fd6"/>
+          <circle cx="40" cy="40" r="4.5" fill="#1e7fd6"/>
+          <circle cx="56" cy="40" r="4.5" fill="#1e7fd6"/>
+          <!-- row 4 -->
+          <circle cx="8"  cy="56" r="4.5" fill="#8a95a5"/>
+          <circle cx="24" cy="56" r="4.5" fill="#8a95a5"/>
+          <circle cx="40" cy="56" r="4.5" fill="#8a95a5"/>
+          <circle cx="56" cy="56" r="4.5" fill="#8a95a5"/>
+        </svg>
+        <span class="logo-text">
+          DATA FIRST
+          <span class="brands">BRANDS</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#solution">Solution</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="our-story.html">Our Story</a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#contact" class="nav-cta">Book a Call</a>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <!-- Decorative dot grids -->
+    <svg class="hero-dots hero-dots-left" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+      <g fill="#8a95a5">
+        <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/><circle cx="100" cy="10" r="3"/>
+        <circle cx="10" cy="40" r="3"/><circle cx="40" cy="40" r="3"/><circle cx="70" cy="40" r="3" fill="#1e7fd6"/><circle cx="100" cy="40" r="3"/>
+        <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3" fill="#1e7fd6"/><circle cx="70" cy="70" r="3" fill="#1e7fd6"/><circle cx="100" cy="70" r="3"/>
+        <circle cx="10" cy="100" r="3"/><circle cx="40" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="100" cy="100" r="3"/>
+      </g>
+    </svg>
+    <svg class="hero-dots hero-dots-right" width="120" height="120" viewBox="0 0 120 120" aria-hidden="true">
+      <g fill="#8a95a5">
+        <circle cx="10" cy="10" r="3"/><circle cx="40" cy="10" r="3"/><circle cx="70" cy="10" r="3"/><circle cx="100" cy="10" r="3"/>
+        <circle cx="10" cy="40" r="3" fill="#1e7fd6"/><circle cx="40" cy="40" r="3" fill="#1e7fd6"/><circle cx="70" cy="40" r="3"/><circle cx="100" cy="40" r="3"/>
+        <circle cx="10" cy="70" r="3"/><circle cx="40" cy="70" r="3" fill="#1e7fd6"/><circle cx="70" cy="70" r="3"/><circle cx="100" cy="70" r="3"/>
+        <circle cx="10" cy="100" r="3"/><circle cx="40" cy="100" r="3"/><circle cx="70" cy="100" r="3"/><circle cx="100" cy="100" r="3"/>
+      </g>
+    </svg>
+
+    <div class="container">
+      <h1 class="fade-up">Take Control of <span class="accent">Ecommerce</span></h1>
+      <p class="fade-up d2">Grow profitably across Amazon and Walmart through data-driven operations.</p>
+      <a href="#contact" class="hero-cta fade-up d3">
+        Book a Call
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number">
+            <span class="currency">$</span><span class="counter" data-target="50000000">0</span><span class="plus">+</span>
+          </div>
+          <div class="stat-label">In Lifetime Sales</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">
+            <span class="counter" data-target="75000">0</span><span class="plus">+</span>
+          </div>
+          <div class="stat-label">Units Processed Monthly</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PILLARS ============ -->
+  <section class="pillars" id="solution">
+    <div class="container">
+      <div class="pillars-grid">
+        <div class="pillar">
+          <div class="pillar-dots">
+            <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true">
+              <g fill="#1e7fd6">
+                <circle cx="6" cy="6" r="3"/><circle cx="22" cy="6" r="3"/><circle cx="38" cy="6" r="3" opacity="0.3"/><circle cx="50" cy="6" r="3" opacity="0.3"/>
+                <circle cx="6" cy="22" r="3"/><circle cx="22" cy="22" r="3"/><circle cx="38" cy="22" r="3"/><circle cx="50" cy="22" r="3" opacity="0.3"/>
+                <circle cx="6" cy="38" r="3" opacity="0.3"/><circle cx="22" cy="38" r="3"/><circle cx="38" cy="38" r="3"/><circle cx="50" cy="38" r="3"/>
+                <circle cx="6" cy="50" r="3" opacity="0.3"/><circle cx="22" cy="50" r="3" opacity="0.3"/><circle cx="38" cy="50" r="3"/><circle cx="50" cy="50" r="3"/>
+              </g>
+            </svg>
+          </div>
+          <div class="pillar-num">01</div>
+          <h3>Protect Your Listings.</h3>
+          <p>Identify and remove unauthorized sellers and control MAP across marketplaces.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-dots">
+            <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true">
+              <g fill="#1e7fd6">
+                <circle cx="6" cy="50" r="3"/><circle cx="6" cy="38" r="3" opacity="0.3"/><circle cx="6" cy="22" r="3" opacity="0.3"/><circle cx="6" cy="6" r="3" opacity="0.3"/>
+                <circle cx="22" cy="50" r="3"/><circle cx="22" cy="38" r="3"/><circle cx="22" cy="22" r="3" opacity="0.3"/><circle cx="22" cy="6" r="3" opacity="0.3"/>
+                <circle cx="38" cy="50" r="3"/><circle cx="38" cy="38" r="3"/><circle cx="38" cy="22" r="3"/><circle cx="38" cy="6" r="3" opacity="0.3"/>
+                <circle cx="50" cy="50" r="3"/><circle cx="50" cy="38" r="3"/><circle cx="50" cy="22" r="3"/><circle cx="50" cy="6" r="3"/>
+              </g>
+            </svg>
+          </div>
+          <div class="pillar-num">02</div>
+          <h3>Scale What's Already Working.</h3>
+          <p>Expand your best seller list via in-house advertising across Amazon and Walmart.</p>
+        </div>
+
+        <div class="pillar">
+          <div class="pillar-dots">
+            <svg width="56" height="56" viewBox="0 0 56 56" aria-hidden="true">
+              <g fill="#1e7fd6">
+                <circle cx="6" cy="6" r="3" opacity="0.3"/><circle cx="22" cy="6" r="3"/><circle cx="38" cy="6" r="3"/><circle cx="50" cy="6" r="3" opacity="0.3"/>
+                <circle cx="6" cy="22" r="3"/><circle cx="22" cy="22" r="3"/><circle cx="38" cy="22" r="3"/><circle cx="50" cy="22" r="3"/>
+                <circle cx="6" cy="38" r="3"/><circle cx="22" cy="38" r="3"/><circle cx="38" cy="38" r="3"/><circle cx="50" cy="38" r="3"/>
+                <circle cx="6" cy="50" r="3" opacity="0.3"/><circle cx="22" cy="50" r="3"/><circle cx="38" cy="50" r="3"/><circle cx="50" cy="50" r="3" opacity="0.3"/>
+              </g>
+            </svg>
+          </div>
+          <div class="pillar-num">03</div>
+          <h3>Sculpt Brand Image.</h3>
+          <p>Sculpt your brand with conversion-built listing copy, creative, and A+ content.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS (vertical timeline) ============ -->
+  <section class="process" id="how-it-works">
+    <div class="process-header">
+      <div class="process-eyebrow">How It Works</div>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-dot" id="timelineDot"></div>
+
+      <!-- Step 1: Investment (left) -->
+      <div class="timeline-step left">
+        <div class="timeline-content">
+          <div class="timeline-icon">
+            <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Dot grid backdrop -->
+              <g fill="#8a95a5" opacity="0.18">
+                <circle cx="40"  cy="40"  r="5"/><circle cx="96"  cy="40"  r="5"/><circle cx="152" cy="40"  r="5"/><circle cx="208" cy="40"  r="5"/><circle cx="264" cy="40"  r="5"/>
+                <circle cx="40"  cy="96"  r="5"/><circle cx="96"  cy="96"  r="5"/><circle cx="152" cy="96"  r="5"/><circle cx="208" cy="96"  r="5"/><circle cx="264" cy="96"  r="5"/>
+                <circle cx="40"  cy="152" r="5"/><circle cx="96"  cy="152" r="5"/><circle cx="152" cy="152" r="5"/><circle cx="208" cy="152" r="5"/><circle cx="264" cy="152" r="5"/>
+                <circle cx="40"  cy="208" r="5"/><circle cx="96"  cy="208" r="5"/><circle cx="152" cy="208" r="5"/><circle cx="208" cy="208" r="5"/><circle cx="264" cy="208" r="5"/>
+                <circle cx="40"  cy="264" r="5"/><circle cx="96"  cy="264" r="5"/><circle cx="152" cy="264" r="5"/><circle cx="208" cy="264" r="5"/><circle cx="264" cy="264" r="5"/>
+              </g>
+              <!-- Subtle ring behind icon -->
+              <circle cx="160" cy="152" r="78" fill="#111a2c" stroke="#1c2740" stroke-width="2"/>
+              <!-- Dollar sign -->
+              <g fill="none" stroke="#1e7fd6" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Vertical bar -->
+                <line x1="160" y1="100" x2="160" y2="208"/>
+                <!-- S curve -->
+                <path d="M 192 122
+                         C 192 110, 178 104, 160 104
+                         C 138 104, 128 116, 128 130
+                         C 128 144, 140 150, 160 154
+                         C 180 158, 192 164, 192 178
+                         C 192 192, 178 200, 160 200
+                         C 142 200, 128 194, 128 182"/>
+              </g>
+            </svg>
+          </div>
+          <div class="step-num">STEP 01</div>
+          <h3>Investment.</h3>
+          <p>We place a large opening order — putting our capital behind your brand from day one.</p>
+        </div>
+        <div class="timeline-marker">
+          <div class="timeline-marker-ring">01</div>
+        </div>
+      </div>
+
+      <!-- Step 2: Fulfillment (right) -->
+      <div class="timeline-step right">
+        <div class="timeline-marker">
+          <div class="timeline-marker-ring">02</div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-icon">
+            <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Dot grid backdrop -->
+              <g fill="#8a95a5" opacity="0.18">
+                <circle cx="40"  cy="40"  r="5"/><circle cx="96"  cy="40"  r="5"/><circle cx="152" cy="40"  r="5"/><circle cx="208" cy="40"  r="5"/><circle cx="264" cy="40"  r="5"/>
+                <circle cx="40"  cy="96"  r="5"/><circle cx="96"  cy="96"  r="5"/><circle cx="152" cy="96"  r="5"/><circle cx="208" cy="96"  r="5"/><circle cx="264" cy="96"  r="5"/>
+                <circle cx="40"  cy="152" r="5"/><circle cx="96"  cy="152" r="5"/><circle cx="152" cy="152" r="5"/><circle cx="208" cy="152" r="5"/><circle cx="264" cy="152" r="5"/>
+                <circle cx="40"  cy="208" r="5"/><circle cx="96"  cy="208" r="5"/><circle cx="152" cy="208" r="5"/><circle cx="208" cy="208" r="5"/><circle cx="264" cy="208" r="5"/>
+                <circle cx="40"  cy="264" r="5"/><circle cx="96"  cy="264" r="5"/><circle cx="152" cy="264" r="5"/><circle cx="208" cy="264" r="5"/><circle cx="264" cy="264" r="5"/>
+              </g>
+              <!-- Subtle ring behind icon -->
+              <circle cx="160" cy="152" r="78" fill="#111a2c" stroke="#1c2740" stroke-width="2"/>
+              <!-- Truck (delivery) -->
+              <g fill="none" stroke="#1e7fd6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                <!-- Cargo box -->
+                <rect x="100" y="120" width="80" height="58" rx="4"/>
+                <!-- Cab -->
+                <path d="M180 138 L210 138 L226 160 L226 178 L180 178 Z"/>
+                <!-- Cab window detail -->
+                <line x1="190" y1="150" x2="216" y2="150"/>
+                <!-- Wheels -->
+                <circle cx="128" cy="194" r="12" fill="#0b1220"/>
+                <circle cx="200" cy="194" r="12" fill="#0b1220"/>
+                <circle cx="128" cy="194" r="4" fill="#1e7fd6" stroke="none"/>
+                <circle cx="200" cy="194" r="4" fill="#1e7fd6" stroke="none"/>
+              </g>
+              <!-- Motion lines behind -->
+              <g stroke="#1e7fd6" stroke-width="4" stroke-linecap="round" opacity="0.5">
+                <line x1="76" y1="138" x2="92" y2="138"/>
+                <line x1="68" y1="156" x2="92" y2="156"/>
+                <line x1="76" y1="174" x2="92" y2="174"/>
+              </g>
+            </svg>
+          </div>
+          <div class="step-num">STEP 02</div>
+          <h3>Fulfillment.</h3>
+          <p>We arrange fulfillment from end to end — inbound, prep, storage, and shipping handled.</p>
+        </div>
+      </div>
+
+      <!-- Step 3: Growth (left) -->
+      <div class="timeline-step left">
+        <div class="timeline-content">
+          <div class="timeline-icon">
+            <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Dot grid backdrop -->
+              <g fill="#8a95a5" opacity="0.18">
+                <circle cx="40"  cy="40"  r="5"/><circle cx="96"  cy="40"  r="5"/><circle cx="152" cy="40"  r="5"/><circle cx="208" cy="40"  r="5"/><circle cx="264" cy="40"  r="5"/>
+                <circle cx="40"  cy="96"  r="5"/><circle cx="96"  cy="96"  r="5"/><circle cx="152" cy="96"  r="5"/><circle cx="208" cy="96"  r="5"/><circle cx="264" cy="96"  r="5"/>
+                <circle cx="40"  cy="152" r="5"/><circle cx="96"  cy="152" r="5"/><circle cx="152" cy="152" r="5"/><circle cx="208" cy="152" r="5"/><circle cx="264" cy="152" r="5"/>
+                <circle cx="40"  cy="208" r="5"/><circle cx="96"  cy="208" r="5"/><circle cx="152" cy="208" r="5"/><circle cx="208" cy="208" r="5"/><circle cx="264" cy="208" r="5"/>
+                <circle cx="40"  cy="264" r="5"/><circle cx="96"  cy="264" r="5"/><circle cx="152" cy="264" r="5"/><circle cx="208" cy="264" r="5"/><circle cx="264" cy="264" r="5"/>
+              </g>
+              <!-- Subtle ring behind icon -->
+              <circle cx="160" cy="152" r="78" fill="#111a2c" stroke="#1c2740" stroke-width="2"/>
+              <!-- Rising bar chart -->
+              <g fill="#1e7fd6" opacity="0.35">
+                <rect x="108" y="180" width="16" height="22" rx="2"/>
+                <rect x="132" y="166" width="16" height="36" rx="2"/>
+                <rect x="156" y="148" width="16" height="54" rx="2"/>
+                <rect x="180" y="128" width="16" height="74" rx="2"/>
+              </g>
+              <!-- Trend line with arrow -->
+              <g fill="none" stroke="#1e7fd6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="106,178 138,158 168,134 200,110 218,96"/>
+                <!-- Arrowhead -->
+                <polyline points="206,98 222,92 218,108"/>
+              </g>
+              <!-- Highlighted endpoint dot -->
+              <circle cx="218" cy="96" r="6" fill="#1e7fd6"/>
+            </svg>
+          </div>
+          <div class="step-num">STEP 03</div>
+          <h3>Growth.</h3>
+          <p>We improve listings and run ads on our dime — driving compounding growth quarter over quarter.</p>
+        </div>
+        <div class="timeline-marker">
+          <div class="timeline-marker-ring">03</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contact">
+    <div class="container footer-inner">
+      <div class="footer-meta">© 2026 Data First Brands. A Lofi Logistics company.</div>
+      <div class="footer-links">
+        <a href="#solution">Solution</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="our-story.html">Our Story</a>
+        <a href="mailto:hello@datafirstbrands.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // === Count-up animation on stats when in view ===
+    const easeOutQuad = t => t * (2 - t);
+
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 2000;
+      const start = performance.now();
+
+      function frame(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.floor(target * easeOutQuad(progress));
+        el.textContent = value.toLocaleString('en-US');
+        if (progress < 1) {
+          requestAnimationFrame(frame);
+        } else {
+          el.textContent = target.toLocaleString('en-US');
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
+          animateCounter(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+    // === Timeline: scrolling dot + step fade-in ===
+    (function setupTimeline() {
+      const timeline = document.getElementById('timeline');
+      const dot = document.getElementById('timelineDot');
+      const line = document.querySelector('.timeline-line');
+      const steps = document.querySelectorAll('.timeline-step');
+      const markers = document.querySelectorAll('.timeline-marker-ring');
+      if (!timeline || !dot || !line || !markers.length) return;
+
+      // Fade-in steps as they enter view
+      const stepObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          }
+        });
+      }, { threshold: 0.25, rootMargin: '0px 0px -10% 0px' });
+      steps.forEach(s => stepObserver.observe(s));
+
+      // Cache the dot's allowed range — from first marker center to last marker center
+      let dotMinY = 0;
+      let dotMaxY = 0;
+
+      function measureBounds() {
+        const tlRect = timeline.getBoundingClientRect();
+        const firstRect = markers[0].getBoundingClientRect();
+        const lastRect = markers[markers.length - 1].getBoundingClientRect();
+
+        // Y of each marker's center, relative to the timeline container
+        dotMinY = (firstRect.top + firstRect.height / 2) - tlRect.top;
+        dotMaxY = (lastRect.top + lastRect.height / 2) - tlRect.top;
+
+        // Make the vertical line span only between those two points
+        line.style.top = dotMinY + 'px';
+        line.style.bottom = (timeline.offsetHeight - dotMaxY) + 'px';
+      }
+
+      let ticking = false;
+      function updateDot() {
+        ticking = false;
+        const rect = timeline.getBoundingClientRect();
+        const viewportMid = window.innerHeight / 2;
+        // Distance from timeline top to viewport mid
+        let y = viewportMid - rect.top;
+        // Clamp to the dot's allowed range (first marker → last marker)
+        y = Math.max(dotMinY, Math.min(dotMaxY, y));
+        dot.style.top = y + 'px';
+      }
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(updateDot);
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => {
+        measureBounds();
+        updateDot();
+      });
+
+      // Initial measurement after a beat so fonts/layout settle
+      measureBounds();
+      updateDot();
+      window.addEventListener('load', () => {
+        measureBounds();
+        updateDot();
+      });
+    })();
+
+    // === Mobile menu (placeholder — wire up when nav menu is finalized) ===
+    document.querySelector('.mobile-toggle')?.addEventListener('click', () => {
+      const links = document.querySelector('.nav-links');
+      if (links) {
+        const isOpen = links.style.display === 'flex';
+        links.style.display = isOpen ? 'none' : 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.top = '70px';
+        links.style.right = '32px';
+        links.style.background = 'var(--bg-elev)';
+        links.style.padding = '20px';
+        links.style.borderRadius = '10px';
+        links.style.border = '1px solid var(--line)';
+      }
+    });
+  </script>
+
+</body>
+</html>
